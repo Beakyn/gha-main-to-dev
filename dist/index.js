@@ -29223,7 +29223,7 @@ async function createBranch({ base, name }) {
   } = await octokit.rest.git.getRef({
     owner,
     repo,
-    ref: `refs/heads/${base}`,
+    ref: `heads/${base}`,
   });
 
   console.log(`create '${name}' branch`);
@@ -29240,7 +29240,7 @@ async function deleteBranch(name) {
   await octokit.rest.git.deleteRef({
     owner,
     repo,
-    ref: `refs/heads/${name}`,
+    ref: `heads/${name}`,
   });
 }
 
@@ -29248,7 +29248,7 @@ async function deleteBranch(name) {
 async function createPullRequest({ base, head, title }) {
   console.log(`create PR from ${head} to ${base}: "${title}"`);
   const {
-    data: { id },
+    data: { number },
   } = await octokit.rest.pulls.create({
     base,
     head,
@@ -29258,8 +29258,8 @@ async function createPullRequest({ base, head, title }) {
     draft: false,
   });
 
-  console.log(`PR created with id ${id}`);
-  return id;
+  console.log(`PR created with number ${number}`);
+  return number;
 }
 
 async function mergePullRequest(pull_number) {
