@@ -21,7 +21,9 @@ This action opens a PR to send commits from the main branch to the develop branc
 ## Example usage
 
 ```yaml
-uses: Beakyn/main-to-dev@main
+uses: Beakyn/gha-main-to-dev@main
+env:
+  GITHUB_TOKEN: ${{ github.token }}
 with:
   main-branch: "master"
 ```
